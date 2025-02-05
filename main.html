@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTS Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .links {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out 1s forwards;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .links a:hover {
+            background: white;
+            color: #ff416c;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">NTS</div>
+    <div class="links">
+        <a href="https://example.com">Ссылка 1</a>
+        <a href="https://example.com">Ссылка 2</a>
+    </div>
+
+</body>
+</html>
