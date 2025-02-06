@@ -19,10 +19,11 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            background: linear-gradient(45deg, #ff416c, #ff2b2b);
             text-align: center;
             color: white;
             overflow: hidden;
+            position: relative;
         }
 
         .title {
@@ -54,12 +55,21 @@
             padding: 10px 20px;
             border-radius: 10px;
             transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .links a img {
+            width: 28px;
+            height: 28px;
         }
 
         .links a:hover {
             background: white;
             color: #ff416c;
         }
+
         .fullscreen-image {
             position: fixed;
             top: 0;
@@ -87,6 +97,39 @@
             visibility: visible;
         }
 
+        .rickroll {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: white;
+            color: red;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .rickroll:hover {
+            background: red;
+            color: white;
+        }
+
+        .moving {
+            position: relative;
+            animation: move 0.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(-10px) translateY(-10px) rotate(5deg);
+            }
+            to {
+                transform: translateX(10px) translateY(10px) rotate(-5deg);
+            }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -102,22 +145,49 @@
 <body>
 
     <div class="title" onclick="showFullscreenImage()">NTS</div>
+    <div class="rickroll" onclick="activateRickroll()">НЕ НАЖИМАЙ СЮДА</div>
     <div class="links">
-        <a href="https://www.roblox.com/communities/32662185/NTS-Group#!/about">Roblox Группа</a>
-        <a href="https://discord.gg/AC7vfRVfAq">Дискорд Сервер</a>
+        <a href="https://www.roblox.com/communities/32662185/NTS-Group#!/about">
+            <img src="icons/roblox.png" alt="Roblox"> Roblox Группа
+        </a>
+        <a href="https://discord.gg/AC7vfRVfAq">
+            <img src="icons/discord.png" alt="Discord"> Дискорд Сервер
+        </a>
+        <a href="https://t.me/example">
+            <img src="icons/telegram.png" alt="Telegram"> Telegram Канал
+        </a>
     </div>
 
     <div class="fullscreen-image" id="fullscreenImage">
-        <img src="https://i.postimg.cc/XYRNp52h/photo-2024-12-30-22-16-05.jpg" alt="Fullscreen">
+        <img id="randomImage" src="" alt="Fullscreen">
     </div>
 
     <script>
+        const images = [
+            "https://i.postimg.cc/pdkkcVMW/photo-2024-12-01-16-33-01.jpg",
+            "https://i.postimg.cc/XYRNp52h/photo-2024-12-30-22-16-05.jpg",
+            "https://i.postimg.cc/MH9wZL99/photo-2024-12-03-18-59-12.jpg"
+        ];
+
         function showFullscreenImage() {
             let fullscreenImage = document.getElementById("fullscreenImage");
+            let randomImage = document.getElementById("randomImage");
+
+            let randomIndex = Math.floor(Math.random() * images.length);
+            randomImage.src = images[randomIndex];
             fullscreenImage.classList.add("show");
             setTimeout(() => {
                 fullscreenImage.classList.remove("show");
             }, 3000);
+        }
+
+        function activateRickroll() {
+            let audio = new Audio('https://www.myinstants.com/media/sounds/rick-roll.mp3');
+            audio.play();
+
+            document.querySelector(".title").classList.add("moving");
+            document.querySelector(".links").classList.add("moving");
+            document.querySelector(".rickroll").classList.add("moving");
         }
     </script>
 
